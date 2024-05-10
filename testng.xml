@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="FullRegression1" parallel="classes" thread-count="2">
+<suite name="FullRegression1" >
     <listeners>
         <!--<listener class-name="titan.dev.analyzer.TitanTransformer"/>-->
         <listener class-name="org.sd.extentReport.ExtentListeners"/>
     </listeners>
 
-    <test name="AllTests1" preserve-order="true"  >
+    <test name="AllTests1" preserve-order="true"  parallel="classes" thread-count="3">
         <classes>
-             <!-- <class name="titan.dev.Practice"/>-->
-            <class name="org.sd.test.LoginTest"></class>
-            <class name="org.sd.test.LoginTest1"></class>
+            <class name="org.sd.test.LoginTest1"/>
+            <class name="org.sd.test.LoginTest"/>
+            <class name="org.sd.test.LoginTest2"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

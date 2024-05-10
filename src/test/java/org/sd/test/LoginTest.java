@@ -11,16 +11,13 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
 
 
-
     @Test
-    public void testLogin() {
+    public void testLogin() throws InterruptedException {
         LoginPage loginPage = new LoginPage(getDriver());
-        System.out.println("The thread ID  is "+ Thread.currentThread().getId());
-        loginPage.login("yourusername", "yourpassword");
-        System.out.println(getDriver().getTitle());
-        Assert.assertEquals(getDriver().getTitle(),"Swag Labs");
-        // Add assertions or further test steps
-
+        loginPage.login("124", "1234");
+        Assert.assertEquals(getDriver().getTitle(), "123");
+        //System.out.println(loginPage.verifyProductIsDisplayed());
     }
+
 
 }

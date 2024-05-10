@@ -1,12 +1,11 @@
 package org.sd.test;
 
 import org.sd.baseTest.BaseTest;
-import org.sd.driverFactory.Base;
 import org.sd.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest1 extends BaseTest {
+public class LoginTest2 extends BaseTest {
 
 
 

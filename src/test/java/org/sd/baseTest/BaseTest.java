@@ -14,6 +14,7 @@ public class BaseTest extends Base{
     @AfterClass
     public void tearDown() {
         getDriver().quit();
+        unload();
     }
 
 

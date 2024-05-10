@@ -18,19 +18,23 @@ public class LoginPage extends Base {
     @FindBy(id = "login-button")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//div[@class='inventory_item_name' and text()='Sauce Labs Backpack']")
+    private WebElement sauceLabsBackpackProduct;
+
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(getDriver(), this);
     }
 
     // Method to perform login
-    public void login(String username, String password) {
+    public void login(String username, String password) throws InterruptedException {
+        getDriver().navigate().refresh();
         Type(usernameInput, username);
         Type(passwordInput, password);
-        try {
-            Thread.sleep(10);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
         click(loginButton);
+    }
+
+    public boolean verifyProductIsDisplayed(){
+        return sauceLabsBackpackProduct.isDisplayed();
     }
 }

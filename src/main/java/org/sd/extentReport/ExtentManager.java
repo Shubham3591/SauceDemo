@@ -7,15 +7,15 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.sd.driverFactory.Base;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-import static org.sd.driverFactory.Base.getDriver;
 
 
-public class ExtentManager {
+public class ExtentManager extends Base {
 
 	private static ExtentReports extent;
 	
@@ -45,7 +45,7 @@ public class ExtentManager {
 	    public static String screenshotPath;
 		public static String screenshotName;
 
-	public static void captureScreenshot() {
+	public void captureScreenshot() {
 
 		File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
 
@@ -55,12 +55,11 @@ public class ExtentManager {
 		try {
 			FileUtils.copyFile(scrFile, new File(System.getProperty("user.dir") + "\\reports\\" + screenshotName));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		
 		}
-	
+
 
 	}

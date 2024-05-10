@@ -17,7 +17,7 @@ import java.util.Date;
 
 
 
-public class ExtentListeners implements ITestListener {
+public class ExtentListeners extends ExtentManager implements ITestListener  {
 
 	static Date d = new Date();
 	static String fileName = "Extent_" + d.toString().replace(":", "_").replace(" ", "_") + ".html";
@@ -25,6 +25,7 @@ public class ExtentListeners implements ITestListener {
 	private static ExtentReports extent = ExtentManager.createInstance(System.getProperty("user.dir")+"\\reports\\"+fileName);
 	
 	public static ThreadLocal<ExtentTest> testReport = new ThreadLocal<ExtentTest>();
+
 	
 
 	public void onTestStart(ITestResult result) {
@@ -57,8 +58,7 @@ public class ExtentListeners implements ITestListener {
 				+ "</font>" + "</b >" + "</summary>" +excepionMessage.replaceAll(",", "<br>")+"</details>"+" \n");
 
 		try {
-
-			ExtentManager.captureScreenshot();
+			captureScreenshot();
 			testReport.get().fail("<b>" + "<font color=" + "red>" + "Screenshot of failure" + "</font>" + "</b>",
 					MediaEntityBuilder.createScreenCaptureFromPath(ExtentManager.screenshotName)
 							.build());
