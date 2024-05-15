@@ -1,11 +1,10 @@
 package org.sd.baseTest;
 
-import org.openqa.selenium.WebDriver;
 import org.sd.driverFactory.Base;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-public class BaseTest extends Base{
+public class BaseTest extends Base {
     @BeforeClass
     public void setUp() {
         launchApp("Chrome");
@@ -16,6 +15,4 @@ public class BaseTest extends Base{
         getDriver().quit();
         unload();
     }
-
-
 }

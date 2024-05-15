@@ -31,7 +31,7 @@ public class ExtentListeners extends ExtentManager implements ITestListener  {
 	public void onTestStart(ITestResult result) {
 
 	
-		ExtentTest test = extent.createTest(result.getTestClass().getName()+"     @TestCase : "+result.getMethod().getMethodName());
+		ExtentTest test = extent.createTest(result.getTestClass().getName()+"     @TestCase : "+result.getMethod().getDescription());
         testReport.set(test);
         
 

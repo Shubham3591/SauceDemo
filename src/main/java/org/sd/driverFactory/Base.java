@@ -50,8 +50,6 @@ public class Base {
         wait(Element);
         testReport.get().info("Clicked on " + Element.getAccessibleName() + " ");
         Element.click();
-
-
     }
 
     public void Type(WebElement Element, String sendKeyData) {

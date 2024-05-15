@@ -27,7 +27,6 @@ public class LoginPage extends Base {
 
     // Method to perform login
     public void login(String username, String password) throws InterruptedException {
-        getDriver().navigate().refresh();
         Type(usernameInput, username);
         Type(passwordInput, password);
 
