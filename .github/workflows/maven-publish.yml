@@ -1,12 +1,13 @@
 name: Java CI with Maven
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   builds:
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -17,4 +18,4 @@ jobs:
         cache : maven
    
     - name: Build with Maven
-      run: mvn clean install
+      run: mvn clean test
