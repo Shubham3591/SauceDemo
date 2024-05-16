@@ -1,5 +1,6 @@
 package org.sd.driverFactory;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +18,10 @@ import static org.sd.extentReport.ExtentListeners.testReport;
 public class Base {
 
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    public Faker faker = new Faker();
+
+
+
 
     public static WebDriver getDriver() {
         return driver.get();
@@ -43,12 +48,13 @@ public class Base {
         getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         getDriver().get("https://www.saucedemo.com/v1/index.html");
+
     }
 
 
-    public void click(WebElement Element) {
+    public void clickElement(WebElement Element) {
         wait(Element);
-        testReport.get().info("Clicked on " + Element.getAccessibleName() + " ");
+        testReport.get().info("Click :: " + Element.getAccessibleName() + " ");
         Element.click();
     }
 
@@ -56,8 +62,7 @@ public class Base {
         wait(Element);
         Element.clear();
         Element.sendKeys(sendKeyData);
-        testReport.get().info("Typed " + sendKeyData + " on " + Element.getAccessibleName());
-        System.out.println("Typed " + sendKeyData + " on " + Element.getAccessibleName());
+        testReport.get().info("Enter :: " + sendKeyData + " on " + Element.getAccessibleName()+" field");
     }
 
     public void wait(WebElement Element) {
@@ -65,4 +70,11 @@ public class Base {
         wait.until(ExpectedConditions.elementToBeClickable(Element));
         wait.until(ExpectedConditions.visibilityOf(Element));
     }
+
+    public void readText(WebElement Element){
+        wait(Element);
+        Element.getText();
+        testReport.get().info("Element displayed is "+Element.getText());
+    }
+
 }

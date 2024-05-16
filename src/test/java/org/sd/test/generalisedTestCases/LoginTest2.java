@@ -1,8 +1,7 @@
-package org.sd.test;
+package org.sd.test.generalisedTestCases;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.sd.baseTest.BaseTest;
-import org.sd.pages.LoginPage;
 import org.sd.utilities.utils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -17,9 +16,11 @@ public class LoginTest2 extends BaseTest {
         return data;
     }
 
+
+
     @Test(  dataProvider = "getLoginTestData", description = "Login Feature-dataProvider Case")
     public void testLogin(String username, String Password) throws InterruptedException {
-        LoginPage loginPage = new LoginPage(getDriver());
+        //LoginPage loginPage = new LoginPage(getDriver());
         // System.out.println("The thread ID  is "+ Thread.currentThread().getId());
         loginPage.login(username,Password);
         Assert.assertEquals(getDriver().getTitle(), "Swag Labs");
