@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -34,7 +35,9 @@ public class Base {
     protected void launchApp(String browserName) {
         // String browserName = prop.getProperty("browser");
         if (browserName.equalsIgnoreCase("Chrome")) {
-            driver.set(new ChromeDriver());
+            ChromeOptions options=new ChromeOptions();
+            options.addArguments("--headless");
+            driver.set(new ChromeDriver(options));
         } else if (browserName.equalsIgnoreCase("FireFox")) {
             driver.set(new FirefoxDriver());
         } else if (browserName.equalsIgnoreCase("IE")) {
