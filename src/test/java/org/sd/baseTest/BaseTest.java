@@ -23,11 +23,7 @@ public class BaseTest extends Base {
     public void setUp() {
         launchApp("Chrome");
         PageFactoryInit();
-        try {
-            FileUtils.cleanDirectory(new File(System.getProperty("user.dir") + "//reports//"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     @AfterClass
