@@ -16,7 +16,7 @@ public class ProductsPage extends Base {
     @FindBy(id = "item_4_title_link")
     private WebElement sauceLabsBackpack;
 
-    @FindBy(id = "item_1_title_link")
+    @FindBy(id = "item_1_title_link1")
     private WebElement tShirtProduct;
 
 
