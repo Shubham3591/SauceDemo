@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.sd.driverFactory.Base;
 
+import static org.sd.extentReport.ExtentListeners.testReport;
+
 
 public class LoginPage extends Base {
 
@@ -28,6 +30,7 @@ public class LoginPage extends Base {
         Type(usernameInput, username);
         Type(passwordInput, password);
         clickElement(loginButton);
+        testReport.get().info("Successfully LoggedIn to App");
     }
 
     public boolean verifyProductIsDisplayed(){

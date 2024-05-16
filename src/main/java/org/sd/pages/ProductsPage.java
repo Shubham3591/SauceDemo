@@ -13,10 +13,10 @@ public class ProductsPage extends Base {
     }
 
 
-    @FindBy(xpath = "//div[text()='Sauce Labs Backpack']")
+    @FindBy(id = "item_4_title_link")
     private WebElement sauceLabsBackpack;
 
-    @FindBy(xpath = "//div[text()='Sauce Labs Bolt T-Shirt']")
+    @FindBy(id = "item_1_title_link")
     private WebElement tShirtProduct;
 
 
