@@ -1,0 +1,14 @@
+[
+  {
+    "id": 7,
+    "email": "michael.lawson@reqres.in",
+    "first_name": "Michael",
+    "last_name": "Lawson"
+  },
+  {
+    "id": 11,
+    "email": "george.edwards@reqres.in",
+    "first_name": "George",
+    "last_name": "Edwards"
+  }
+]

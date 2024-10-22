@@ -1,5 +1,7 @@
 name: Java CI with Maven
 on:
+  schedule:
+    - cron: '0 09:30 * * *'
   workflow_dispatch:
   push:
     branches: [ master ]
