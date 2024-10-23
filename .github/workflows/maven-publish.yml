@@ -8,6 +8,7 @@ on:
   pull_request:
     branches: [ master ]
 jobs:
+  scheduled:
   builds:
     runs-on: ubuntu-latest
     
