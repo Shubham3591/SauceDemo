@@ -2,13 +2,12 @@ name: Java CI with Maven
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/2 * * * *'
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 jobs:
-  scheduled:
   builds:
     runs-on: ubuntu-latest
     
