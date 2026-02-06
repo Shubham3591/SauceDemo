@@ -1,0 +1,142 @@
+GPath Cheat Sheet – Rest Assured (Detailed)
+What is GPath?
+GPath (Groovy Path) is a Groovy-based expression language used by Rest Assured to navigate, filter, and extract
+data from JSON responses. It allows QA engineers to validate dynamic API responses without writing explicit Java
+loops.
+Assumption used in examples
+JsonPath jp = response.jsonPath();
+find { } – First Matching Element
+• Iterates over the JSON array and returns the first element that matches the condition.
+• Use when exactly one match is expected.
+• Example: find { it.id == 2 }.username
+findAll { } – All Matching Elements
+• Returns a list of all elements that satisfy the condition.
+• Use when multiple matches are possible.
+• Example: findAll { it.company.name == 'Deckow-Crist' }.id
+collect { } – Transform Data
+• Transforms each element into another value (similar to Java map()).
+• Returns a list of transformed values.
+• Example: collect { it.username }
+Spread Operator (*.field)
+• Shortcut for collect { it.field }.
+• Improves readability for simple projections.
+• Example: *.username
+size() – Count Elements
+• Returns the number of elements in the current context.
+• Often used for assertions.
+• Example: findAll { it.id > 1 }.size()
+any { } – At Least One Match
+• Returns true if any element matches the condition.
+• Useful for existence checks.
+• Example: any { it.username == 'Antonette' }
+every { } – All Match Condition
+• Returns true only if all elements satisfy the condition.
+• Useful for data quality validations.
+• Example: every { it.id > 0 }
+Numeric Operations: min(), max(), sum()
+• Performs aggregation on numeric fields.
+• Works only on numeric values.
+• Example: id.min(), id.max(), id.sum()
+Deep Search (..field)
+• Searches for a field at any depth in the JSON structure.
+• Can return many values; use carefully.
+• Example: ..name
+flatten() – Flatten Nested Arrays
+• Flattens nested arrays into a single list.
+• Required when arrays exist inside arrays.
+• Example: orders.items.flatten().name
+Safe Navigation (?.)
+• Prevents NullPointerException if a field is missing.
+• Returns null instead of throwing error.
+• Example: find { it.id == 2 }?.company?.name
+Index Access [index]
+• Access elements by index position.
+• Avoid for dynamic APIs; safe only for static responses.
+• Example: [0].username
+QA Best Practices
+• Prefer find / findAll over index-based access.
+• Use ?. for null safety in dynamic APIs.
+• Switch to Map/POJO approaches for complex business logic.
+
+
+
+ One‑line Interview Answer
+
+Yes, request payloads are also created using POJOs; the approach is the same, but request POJOs are usually simpler
+and contain only fields required by the API.
+
+
+✅ Simple Rule to Remember
+
+If JSON is complex or reused → POJO
+If JSON is small or dynamic → Map / inline JSON
+
+
+
+In pojo add :       @Builder
+
+
+
+CreateUserRequest request =
+        CreateUserRequest.builder()
+                .name("John")
+                .username("john123")
+                .email("john@test.com")
+                .company(
+                    CreateUserRequest.Company.builder()
+                        .name("TestCorp")
+                        .build()
+                )
+                .build();
+4️⃣ Why Builder is BETTER than constructor
+❌ Constructor problem
+Javanew CreateUserRequest("John", "john123", null, company);Show more lines
+What is null? ❌
+Order mistakes? ❌
+Unreadable ❌
+✅ One‑go creation
+✅ No constructor issues
+✅ Optional fields supported
+✅ Jackson compatible
+✅ Readable
+
+-------------------------------------------------------------
+Small Exmaple:
+
+✅ Single Shared POJO (Correct Way)
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class UserJob {
+
+    private String name;
+    private String job;
+}
+
+✅ Use for REQUEST
+UserJob request = new UserJob();
+request.setName("morpheus");
+request.setJob("leader");
+
+given()
+    .contentType(ContentType.JSON)
+    .body(request)
+.when()
+    .post("/users");
+
+
+✅ Use for RESPONSE
+UserJob responsePojo =
+        response.as(UserJob.class);
+
+System.out.println(responsePojo.getName());
+System.out.println(responsePojo.getJob());
+
+--------*****---
+ Interview‑ready answer
+
+Yes, FasterXML Jackson is a JSON processing dependency used by Rest Assured to serialize request POJOs and deserialize
+response JSON into Java objects.
