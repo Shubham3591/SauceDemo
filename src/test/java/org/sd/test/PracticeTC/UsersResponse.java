@@ -8,8 +8,16 @@ import lombok.Data;
 public class UsersResponse {
 
         @Data
-        @JsonIgnoreProperties(ignoreUnknown = true)
-        public static class User {
+    /*@Data is a Lombok shortcut annotation that generates common boilerplate for plain Java objects: getters
+    for all fields, setters for all non‑final fields, toString(), equals() and hashCode() implementations,
+    and a constructor for required fields.*/
+
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    /*If incoming JSON contains extra fields such as nickname or metadata, they will be ignored during
+    deserialization.*/
+
+    public static class User {
             private int id;
             private String name;
             private String username;

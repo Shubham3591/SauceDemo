@@ -26,8 +26,6 @@ public class APIPPractice {
 
         UsersResponse.User[] usersArr = response.as(UsersResponse.User[].class);
         System.out.println("Users length: " + (usersArr != null ? usersArr.length : -1));
-
-
         System.out.println("First username (should be Bret): " + usersArr[0].getUsername());
 
 
@@ -45,22 +43,15 @@ public class APIPPractice {
 
         // All data
         List<Object> l = response.path("");
-        //System.out.println("l "+l);
-
         //Dynamic Response -https://www.youtube.com/watch?v=3YkQv87DsEo
         Object responseAsObject =response.as(Object.class);
-
         if (responseAsObject instanceof List)
         {
             List responseAsList= (List) responseAsObject;
             System.out.println("List : "+responseAsList.size());
-            //System.out.println("List : "+responseAsList);
-
         }
         else {
             Map responseAsMap =(Map) responseAsObject;
-            //System.out.println("map "+responseAsMap);
-
         }
 
 
